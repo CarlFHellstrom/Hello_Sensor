@@ -23,28 +23,28 @@
                 android:text="About"
                 android:textSize="28sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="24dp"/>
+                android:layout_marginBottom="24dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name: Carl Hellström"
                 android:textSize="18sp"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="8dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Age: 21"
                 android:textSize="18sp"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="8dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="LTH Student"
                 android:textSize="18sp"
-                android:layout_marginBottom="32dp"/>
+                android:layout_marginBottom="32dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -52,14 +52,14 @@
                 android:text="Game Instructions"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginBottom="16dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Step :"
                 android:textSize="16sp"
-                android:layout_marginBottom="12dp"/>
+                android:layout_marginBottom="12dp" />
 
         </LinearLayout>
     </ScrollView>

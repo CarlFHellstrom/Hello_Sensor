@@ -2,7 +2,7 @@ package com.example.hello_sensor;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-public class AboutActivity extends AppCompatActivity{
+public class AboutActivity extends BasicActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
