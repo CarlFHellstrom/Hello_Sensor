@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.Random;
@@ -30,7 +31,6 @@ public class GameActivity extends BasicActivity implements SensorEventListener {
 
     private static final float TILT_LOWER_THRESHOLD = 7.0f;
     private static final float TILT_UPPER_THRESHOLD = 10.0f;
-    private static final float TILT_UP_THRESHOLD = 6.0f;
     private boolean wasInRange = false;
 
     private Handler handler;
@@ -49,7 +49,7 @@ public class GameActivity extends BasicActivity implements SensorEventListener {
         textViewResult = findViewById(R.id.textViewResult);
         textViewScore = findViewById(R.id.textViewScore);
 
-        random = new Random();
+        random = new Random(System.nanoTime());
         handler = new Handler();
 
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -106,7 +106,7 @@ public class GameActivity extends BasicActivity implements SensorEventListener {
 
             boolean inRange = (y >= TILT_LOWER_THRESHOLD && y <= TILT_UPPER_THRESHOLD);
 
-            if (wasInRange && !inRange && y < TILT_UP_THRESHOLD) {
+            if (wasInRange && y < TILT_LOWER_THRESHOLD) {
                 flipCoin();
             }
 
@@ -131,8 +131,9 @@ public class GameActivity extends BasicActivity implements SensorEventListener {
 
         animateCoinFlip();
 
+        final boolean isHeads = random.nextBoolean();
+
         handler.postDelayed(() -> {
-            boolean isHeads = random.nextBoolean();
             showResult(isHeads);
         }, 1500);
     }
