@@ -28,7 +28,11 @@ public class GameActivity extends BasicActivity implements SensorEventListener {
     private int tailsCount = 0;
     private Random random;
 
-    private static final float TILT_THRESHOLD = 5.0f;
+    private static final float TILT_LOWER_THRESHOLD = 7.0f;
+    private static final float TILT_UPPER_THRESHOLD = 10.0f;
+    private static final float TILT_UP_THRESHOLD = 6.0f;
+    private boolean wasInRange = false;
+
     private Handler handler;
 
     private MediaPlayer flipSound;
@@ -68,6 +72,13 @@ public class GameActivity extends BasicActivity implements SensorEventListener {
         try {
             flipSound = MediaPlayer.create(this, R.raw.coin_flip);
             landSound = MediaPlayer.create(this, R.raw.coin_land);
+
+            if (flipSound != null) {
+                flipSound.setVolume(1.0f, 1.0f);
+            }
+            if (landSound != null) {
+                landSound.setVolume(1.0f, 1.0f);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -91,11 +102,15 @@ public class GameActivity extends BasicActivity implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER && !isFlipping) {
-            float x = event.values[0];
+            float y = event.values[1];
 
-            if (Math.abs(x) > TILT_THRESHOLD) {
+            boolean inRange = (y >= TILT_LOWER_THRESHOLD && y <= TILT_UPPER_THRESHOLD);
+
+            if (wasInRange && !inRange && y < TILT_UP_THRESHOLD) {
                 flipCoin();
             }
+
+            wasInRange = inRange;
         }
     }
 
