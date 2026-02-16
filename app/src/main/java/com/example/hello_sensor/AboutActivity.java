@@ -8,5 +8,6 @@ public class AboutActivity extends BasicActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+        enableBackButton();
     }
 }
